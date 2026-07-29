@@ -19,8 +19,9 @@ const GAS =
 
 if(type){
 
-location.replace(
-GAS + "?type=" + encodeURIComponent(type)
+window.open(
+ GAS + "?type=" + type,
+ "_self"
 );
 
 }else{
