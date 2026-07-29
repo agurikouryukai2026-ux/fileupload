@@ -1,39 +1,72 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<meta charset="UTF-8">
 
-<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Redirect...</title>
+<title>
+アップロードページへ移動中
+</title>
 
 <script>
-const GAS_URL =
-"https://script.google.com/macros/s/AKfycbxYlJWl525oA8-_HNrAB6sRITJB-yDhjjDBsc_krj04e83h1gXBMrdyOPyxN4HGiBOM/exec";
+
+(function(){
+
+  // Apps Script WebアプリURL
+  const GAS_URL =
+    "https://script.google.com/macros/s/AKfycbxYlJWl525oA8-_HNrAB6sRITJB-yDhjjDBsc_krj04e83h1gXBMrdyOPyxN4HGiBOM/exec";
 
 
-const params =
-new URLSearchParams(
-  location.search
-);
+  // URLからtype取得
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
 
-const type =
-params.get("type");
+  const type =
+    params.get("type");
 
 
-// Googleアカウント競合回避用
-location.href =
-GAS_URL +
-"?authuser=0&type=" +
-encodeURIComponent(type);
+  if(!type){
+
+    document.write(
+      "アップロードタイプが指定されていません"
+    );
+
+    return;
+
+  }
+
+
+  // リダイレクト先生成
+  const redirectURL =
+    GAS_URL
+    +
+    "?type="
+    +
+    encodeURIComponent(type);
+
+
+  // 遷移
+  window.location.replace(
+    redirectURL
+  );
+
+
+})();
 
 </script>
 
 </head>
 
+
 <body>
 
-移動しています...
+<p>
+アップロードページへ移動しています…
+</p>
 
 </body>
 
