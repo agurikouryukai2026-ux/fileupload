@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>アップロード</title>
+<title>ファイルアップロード</title>
 
 <style>
 html,body{
@@ -36,18 +36,43 @@ new URLSearchParams(
 
 
 const type =
-params.get('type') || 'Rabies1';
+params.get('type');
 
 
-const gasUrl =
-'https://script.google.com/macros/s/AKfycbxYlJWl525oA8-_HNrAB6sRITJB-yDhjjDBsc_krj04e83h1gXBMrdyOPyxN4HGiBOM/exec?type='
-+
-encodeURIComponent(type);
+// type指定がない場合はエラー表示
+if(!type){
+
+ document.body.innerHTML =
+ `
+ <div style="
+ padding:30px;
+ font-family:sans-serif;
+ ">
+ <h2>アップロードページエラー</h2>
+ <p>
+ アップロード種類が指定されていません。
+ </p>
+ </div>
+ `;
+
+}
+else{
 
 
-document.getElementById('app').src =
-gasUrl;
+ const gasUrl =
+ 'https://script.google.com/macros/s/AKfycbxYlJWl525oA8-_HNrAB6sRITJB-yDhjjDBsc_krj04e83h1gXBMrdyOPyxN4HGiBOM/exec?type='
+ +
+ encodeURIComponent(type);
 
+
+
+ document
+ .getElementById('app')
+ .src =
+ gasUrl;
+
+
+}
 
 </script>
 
