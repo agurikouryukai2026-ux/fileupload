@@ -7,29 +7,25 @@
 <title>Redirect...</title>
 
 <script>
+const GAS_URL =
+"https://script.google.com/macros/s/AKfycbxYlJWl525oA8-_HNrAB6sRITJB-yDhjjDBsc_krj04e83h1gXBMrdyOPyxN4HGiBOM/exec";
+
 
 const params =
-new URLSearchParams(location.search);
+new URLSearchParams(
+  location.search
+);
+
 
 const type =
 params.get("type");
 
-const GAS =
-"https://script.google.com/macros/s/AKfycbxYlJWl525oA8-_HNrAB6sRITJB-yDhjjDBsc_krj04e83h1gXBMrdyOPyxN4HGiBOM/exec";
 
-if(type){
-
-window.open(
- GAS + "?type=" + type,
- "_self"
-);
-
-}else{
-
-document.body.innerHTML =
-"<h2>typeが指定されていません。</h2>";
-
-}
+// Googleアカウント競合回避用
+location.href =
+GAS_URL +
+"?authuser=0&type=" +
+encodeURIComponent(type);
 
 </script>
 
