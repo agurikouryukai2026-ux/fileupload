@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta charset="utf-8">
+
+<title>Redirect...</title>
+
+<script>
+
+const params =
+new URLSearchParams(location.search);
+
+const type =
+params.get("type");
+
+const GAS =
+"https://script.google.com/macros/s/AKfycbxYlJWl525oA8-_HNrAB6sRITJB-yDhjjDBsc_krj04e83h1gXBMrdyOPyxN4HGiBOM/exec";
+
+if(type){
+
+location.replace(
+GAS + "?type=" + encodeURIComponent(type)
+);
+
+}else{
+
+document.body.innerHTML =
+"<h2>typeが指定されていません。</h2>";
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+移動しています...
+
+</body>
+
+</html>
